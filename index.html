@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f8f3">
+    <meta name="description" content="Build small routines and keep track of your daily progress with HabitBloom.">
+    <title>HabitBloom | Make room to grow</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="#today" aria-label="HabitBloom home">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span>habit<span class="brand-light">bloom</span></span>
+        </a>
+
+        <div class="nav-caption">YOUR SPACE</div>
+        <nav class="primary-nav">
+          <a class="nav-link active" href="#today" aria-current="page"><span class="nav-icon icon-sun" aria-hidden="true"></span>Today</a>
+          <a class="nav-link" href="#calendar"><span class="nav-icon icon-calendar" aria-hidden="true"></span>Calendar</a>
+        </nav>
+
+        <div class="sidebar-note">
+          <div class="note-sun" aria-hidden="true">✳</div>
+          <p class="note-title">Small steps count.</p>
+          <p class="note-copy">You don't have to bloom all at once.</p>
+          <div class="note-sprout" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+        </div>
+
+        <div class="sidebar-footer"><span class="status-dot"></span> Your progress, your pace</div>
+      </aside>
+
+      <main class="main-content" id="today">
+        <header class="topbar">
+          <div class="breadcrumb">MY ROUTINE <span>/</span> <strong id="topbar-date">TODAY</strong></div>
+          <div class="profile"><span class="profile-avatar" aria-hidden="true">K</span><span>Kaushani</span><span class="profile-chevron" aria-hidden="true"></span></div>
+        </header>
+
+        <div class="page-content">
+          <section class="welcome-row" aria-labelledby="greeting">
+            <div>
+              <p class="eyebrow" id="full-date"></p>
+              <h1 id="greeting">A little progress<br class="mobile-break"> goes a long way<span class="heading-period">.</span></h1>
+              <p class="welcome-copy">Show up for yourself today. The rest will follow.</p>
+            </div>
+            <div class="sun-art" aria-hidden="true"><span class="sun-disc"></span><span class="sun-leaf leaf-one"></span><span class="sun-leaf leaf-two"></span><span class="sun-leaf leaf-three"></span></div>
+          </section>
+
+          <section class="summary-strip" aria-label="Today's progress">
+            <div class="summary-item summary-primary">
+              <span class="summary-icon summary-check" aria-hidden="true"></span>
+              <div><span class="summary-label">TODAY'S PROGRESS</span><strong><span id="completed-count">0</span><span class="summary-divider">/</span><span id="total-count">0</span> habits</strong></div>
+            </div>
+            <div class="summary-item">
+              <span class="summary-icon summary-flame" aria-hidden="true">✳</span>
+              <div><span class="summary-label">BEST STREAK</span><strong><span id="best-streak">0</span> <span class="summary-unit">days</span></strong></div>
+            </div>
+            <div class="summary-meter" aria-label="Daily completion">
+              <div class="meter-topline"><span>You're growing</span><strong id="progress-percent">0%</strong></div>
+              <div class="meter-track"><span id="progress-fill"></span></div>
+            </div>
+          </section>
+
+          <div class="dashboard-grid">
+            <section class="habits-section" aria-labelledby="checklist-title">
+              <div class="section-heading">
+                <div>
+                  <div class="section-kicker"><span class="live-dot"></span> YOUR DAILY RITUAL</div>
+                  <h2 id="checklist-title">Today's habits</h2>
+                </div>
+                <button class="text-button" id="add-habit-button" type="button"><span aria-hidden="true">+</span> Add habit</button>
+              </div>
+
+              <div class="day-switcher">
+                <button class="icon-button" id="previous-day" type="button" aria-label="Previous day"><span class="arrow arrow-left" aria-hidden="true"></span></button>
+                <div class="selected-day"><strong id="selected-day-label"></strong><span id="selected-day-subtitle"></span></div>
+                <button class="icon-button" id="next-day" type="button" aria-label="Next day"><span class="arrow arrow-right" aria-hidden="true"></span></button>
+                <button class="today-button" id="jump-today" type="button">Today</button>
+              </div>
+
+              <div class="habit-list" id="habit-list" aria-live="polite"></div>
+              <div class="empty-state" id="empty-state" hidden>
+                <span class="empty-sprout" aria-hidden="true">✳</span>
+                <strong>A fresh little beginning.</strong>
+                <span>Add a habit to start your daily ritual.</span>
+              </div>
+              <div class="finish-note" id="finish-note" hidden><span aria-hidden="true">✳</span> You showed up for yourself today. That's what matters.</div>
+            </section>
+
+            <aside class="insights-column" aria-label="Habit insights">
+              <section class="calendar-panel" id="calendar" aria-labelledby="calendar-title">
+                <div class="panel-heading">
+                  <div><div class="section-kicker">THE BIG PICTURE</div><h2 id="calendar-title">Your rhythm</h2></div>
+                  <div class="month-controls"><button class="icon-button small" id="previous-month" type="button" aria-label="Previous month"><span class="arrow arrow-left" aria-hidden="true"></span></button><button class="icon-button small" id="next-month" type="button" aria-label="Next month"><span class="arrow arrow-right" aria-hidden="true"></span></button></div>
+                </div>
+                <div class="month-title" id="month-title"></div>
+                <div class="calendar-grid calendar-weekdays" aria-hidden="true"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+                <div class="calendar-grid calendar-days" id="calendar-days" role="grid" aria-label="Monthly habit activity"></div>
+                <div class="calendar-legend"><span><i class="legend-dot legend-low"></i>Just starting</span><span><i class="legend-dot legend-mid"></i>In rhythm</span><span><i class="legend-dot legend-full"></i>Full day</span></div>
+              </section>
+
+              <section class="week-panel" aria-labelledby="week-title">
+                <div class="panel-heading week-heading"><div><div class="section-kicker">ONE DAY AT A TIME</div><h2 id="week-title">This week</h2></div><span class="week-total" id="week-total">0%</span></div>
+                <div class="week-chart" id="week-chart" aria-label="Daily completion this week"></div>
+                <div class="week-caption"><span>Weekly consistency</span><strong id="week-caption-value">0%</strong></div>
+                <div class="week-track"><span id="week-fill"></span></div>
+              </section>
+
+              <div class="quote-strip"><span class="quote-mark" aria-hidden="true">“</span><p>How we spend our days is, of course, how we spend our lives.</p><span class="quote-credit">ANNIE DILLARD</span></div>
+            </aside>
+          </div>
+          <footer class="page-footer"><span>Made for the days you show up.</span><span>GROW AT YOUR OWN PACE <span class="footer-seed" aria-hidden="true">✳</span></span></footer>
+        </div>
+      </main>
+    </div>
+
+    <dialog class="habit-dialog" id="habit-dialog" aria-labelledby="dialog-title">
+      <form id="habit-form">
+        <div class="dialog-topline"><span class="dialog-mark" aria-hidden="true">✳</span><button class="icon-button dialog-close" type="button" id="close-dialog" aria-label="Close"><span class="close-cross" aria-hidden="true"></span></button></div>
+        <p class="section-kicker">A NEW LITTLE RITUAL</p>
+        <h2 id="dialog-title">Plant a habit</h2>
+        <label class="field-label" for="habit-name">What would you like to grow?</label>
+        <input id="habit-name" name="name" type="text" maxlength="48" placeholder="e.g. Read for 10 minutes" required autocomplete="off">
+        <label class="field-label" for="habit-category">Pick a color</label>
+        <div class="color-options" id="color-options" role="radiogroup" aria-label="Habit color"></div>
+        <div class="dialog-actions"><button class="cancel-button" id="cancel-dialog" type="button">Cancel</button><button class="submit-button" type="submit">Add to my day <span aria-hidden="true">→</span></button></div>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
